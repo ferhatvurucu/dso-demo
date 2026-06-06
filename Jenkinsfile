@@ -38,15 +38,16 @@ pipeline {
             }
           }
         }
-      }
-    }
-    stage('OCI Image BnP') {
-      steps {
-        container('kaniko') {
-          sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=ferhatvurucu/dso-demo'
+        stage('OCI Image BnP') {
+          steps {
+            container('kaniko') {
+              sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=ferhatvurucu/dso-demo'
+            }
+          }
         }
       }
     }
+    
 
     stage('Deploy to Dev') {
       steps {
