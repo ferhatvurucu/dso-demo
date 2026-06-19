@@ -35,18 +35,12 @@ pipeline {
                 sh '''
                   set -e
 
-                  echo "== Clean old Dependency-Check cache =="
-                  rm -rf ~/.dependency-check-data || true
+                  echo "== Clean old cache (optional - remove if you want faster builds) =="
+                  # rm -rf /root/.dependency-check-data || true
 
-                  echo "== Update NVD database =="
-                  mvn -B org.owasp:dependency-check-maven:update-only \
-                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
-                    -DnvdApiDelay=1000
-
-                  echo "== Run scan =="
+                  echo "== Run dependency check (NO update) =="
                   mvn -B org.owasp:dependency-check-maven:check \
-                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
-                    -DnvdApiDelay=1000
+                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0
                 '''
               }
             }
