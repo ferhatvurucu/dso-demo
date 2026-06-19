@@ -31,7 +31,11 @@ pipeline {
           steps {
             container('maven') { 
               catchError(buildResult:'SUCCESS',stageResult:'FAILURE') {
-                sh'mvn org.owasp:dependency-check-maven:check'
+                sh '''
+                mvn -B org.owasp:dependency-check-maven:check \
+                -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
+                -DautoUpdate=true
+                '''
               }
             }
           }
