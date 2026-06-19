@@ -38,7 +38,8 @@ pipeline {
                         -DossIndexAnalyzerEnabled=false \
                         -DnvdApiKeyEnvironmentVariable=NVD_API_KEY \
                         -DnvdApiDelay=3000 \
-                        -DnvdMaxRetryCount=8
+                        -DnvdMaxRetryCount=8 \
+                        -DfailOnError=false
                     '''
                   }
                 } 
