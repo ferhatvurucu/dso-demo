@@ -40,11 +40,8 @@ pipeline {
                     echo "== Running Dependency-Check with NVD API Key =="
 
                     mvn -B org.owasp:dependency-check-maven:check \
-                      -DnvdApiKey=$NVD_API_KEY \
-                      -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
-                      -DautoUpdate=true
+                      -DnvdDatafeed=https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-{0}.json.gz \
                       -DossIndexAnalyzerEnabled=false
-                      -DnvdApiDelay=2000
                   '''
                 }
               }
