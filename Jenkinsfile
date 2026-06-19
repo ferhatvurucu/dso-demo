@@ -32,15 +32,20 @@ pipeline {
             container('maven') {
               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 
-                sh '''
-                  set -e
+                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
 
-                  echo "== Run dependency check (NO update) =="
-                  mvn -B org.owasp:dependency-check-maven:check \
-                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
-                    -DautoUpdate=false \
-                    -DossIndexAnalyzerEnabled=false
-                '''
+                  sh '''
+                    set -e
+
+                    echo "== Running Dependency-Check with NVD API Key =="
+
+                    mvn -B org.owasp:dependency-check-maven:check \
+                      -DnvdApiKey=$NVD_API_KEY \
+                      -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
+                      -DautoUpdate=true
+                      -DossIndexAnalyzerEnabled=false
+                  '''
+                }
               }
             }
           }
