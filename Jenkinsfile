@@ -29,23 +29,21 @@ pipeline {
         }
         stage('OWASP Dependency Check') {
           steps {
-            container('maven') {
-              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-
-                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
-
-                  sh '''
-                    set -e
-
-                    mvn -B org.owasp:dependency-check-maven:check \
-                      -DnvdDatafeed=https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-{0}.json.gz \
-                      -DossIndexAnalyzerEnabled=false
-                      -DautoUpdate=false
-                  '''
-                }
+              container('maven') {
+                timeout(time: 150, unit: 'MINUTES') {
+                  withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
+                    sh '''
+                      set -e
+                      mvn -B org.owasp:dependency-check-maven:check \
+                        -DossIndexAnalyzerEnabled=false \
+                        -DnvdApiKeyEnvironmentVariable=NVD_API_KEY \
+                        -DnvdApiDelay=3000 \
+                        -DnvdMaxRetryCount=8
+                    '''
+                  }
+                } 
               }
             }
-          }
 
           post {
             always {
