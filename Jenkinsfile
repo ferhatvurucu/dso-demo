@@ -37,7 +37,7 @@ pipeline {
 
                   echo "== Run dependency check (NO update) =="
                   mvn -B org.owasp:dependency-check-maven:check \
-                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0
+                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
                     -DautoUpdate=false
                 '''
               }
