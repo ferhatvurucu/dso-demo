@@ -27,27 +27,45 @@ pipeline {
             }
           }
         }
-        stage('SCA'){
+        stage('OWASP Dependency Check') {
           steps {
-            container('maven') { 
-              catchError(buildResult:'SUCCESS',stageResult:'FAILURE') {
+            container('maven') {
+              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+
                 sh '''
-                mvn -B org.owasp:dependency-check-maven:check \
-                -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
-                -DautoUpdate=true
+                  set -e
+
+                  echo "== Clean old Dependency-Check cache =="
+                  rm -rf ~/.dependency-check-data || true
+
+                  echo "== Verify plugin version =="
+                  mvn -B org.owasp:dependency-check-maven:version
+
+                  echo "== Update NVD database =="
+                  mvn -B org.owasp:dependency-check-maven:update-only \
+                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
+                    -DnvdApiDelay=1000
+
+                  echo "== Run scan =="
+                  mvn -B org.owasp:dependency-check-maven:check \
+                    -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
+                    -DnvdApiDelay=1000
                 '''
               }
             }
           }
+
           post {
             always {
-              archiveArtifacts allowEmptyArchive:true,
-              artifacts:'target/dependency-check-report.html',fingerprint:true,onlyIfSuccessful:true
+              archiveArtifacts artifacts: 'target/dependency-check-report.html',
+                              allowEmptyArchive: true,
+                              fingerprint: true
             }
           }
         }
       }
     }
+    
     stage('Package') {
       parallel {
         stage('Create Jarfile') {
