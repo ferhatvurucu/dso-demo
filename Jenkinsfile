@@ -38,9 +38,6 @@ pipeline {
                   echo "== Clean old Dependency-Check cache =="
                   rm -rf ~/.dependency-check-data || true
 
-                  echo "== Verify plugin version =="
-                  mvn -B org.owasp:dependency-check-maven:version
-
                   echo "== Update NVD database =="
                   mvn -B org.owasp:dependency-check-maven:update-only \
                     -DnvdApiUrl=https://services.nvd.nist.gov/rest/json/cves/2.0 \
