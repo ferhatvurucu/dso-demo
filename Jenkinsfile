@@ -39,7 +39,8 @@ pipeline {
                         -DnvdApiKeyEnvironmentVariable=NVD_API_KEY \
                         -DnvdApiDelay=3000 \
                         -DnvdMaxRetryCount=8 \
-                        -DfailOnError=false
+                        -DfailOnError=false \
+                        -DnvdValidForHours=24
                     '''
                   }
                 } 
