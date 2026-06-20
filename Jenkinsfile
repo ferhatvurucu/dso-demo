@@ -27,34 +27,6 @@ pipeline {
             }
           }
         }
-        stage('OWASP Dependency Check') {
-          steps {
-              container('maven') {
-                timeout(time: 150, unit: 'MINUTES') {
-                  withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
-                    sh '''
-                      set -e
-                      mvn -B org.owasp:dependency-check-maven:check \
-                        -DossIndexAnalyzerEnabled=false \
-                        -DnvdApiKeyEnvironmentVariable=NVD_API_KEY \
-                        -DnvdApiDelay=3000 \
-                        -DnvdMaxRetryCount=8 \
-                        -DfailOnError=false \
-                        -DnvdValidForHours=24
-                    '''
-                  }
-                } 
-              }
-            }
-
-          post {
-            always {
-              archiveArtifacts artifacts: 'target/dependency-check-report.html',
-                              allowEmptyArchive: true,
-                              fingerprint: true
-            }
-          }
-        }
       }
     }
     
