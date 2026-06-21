@@ -31,7 +31,7 @@ pipeline {
           steps{
             container('licensefinder'){
               sh'ls -al'
-              sh'''#!/bin/bash--login
+              sh'''#!/bin/bash --login
               rvm use default
               gem install license_finder
               license_finder
