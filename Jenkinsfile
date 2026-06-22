@@ -39,15 +39,27 @@ pipeline {
             }
           }
         }
-        stage('GenerateSBOM'){
-          steps{
-            container('maven'){
-              sh'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
-              }
+        stage('GenerateSBOM') {
+          steps {
+            container('maven') {
+              sh 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
+            }
           }
-          post{
-            success{
-              dependencyTrackPublisher projectName:'sample-spring-app', projectVersion:'0.0.1', artifact:'target/bom.xml', autoCreateProjects:true, synchronous:true, archiveArtifacts:true, allowEmptyArchive:true, fingerprint:true, onlyIfSuccessful:true
+          post {
+            success {
+              dependencyTrackPublisher(
+                projectName: 'sample-spring-app',
+                projectVersion: '0.0.1',
+                artifact: 'target/bom.xml',
+                autoCreateProjects: true,
+                synchronous: true
+              )
+              archiveArtifacts(
+                artifacts: 'target/bom.xml',
+                allowEmptyArchive: true,
+                fingerprint: true,
+                onlyIfSuccessful: true
+              )
             }
           }
         }
