@@ -47,18 +47,18 @@ pipeline {
           }
           post {
             success {
-              dependencyTrackPublisher(
-                projectName: 'sample-spring-app',
-                projectVersion: '0.0.1',
-                artifact: 'target/bom.xml',
-                projectProperties: [
-                  tags: [],
-                  swidTagId: '',
-                  group: '',
-                  description: ''
-                ],
-                synchronous: true
-              )
+              // dependencyTrackPublisher(
+              //   projectName: 'sample-spring-app',
+              //   projectVersion: '0.0.1',
+              //   artifact: 'target/bom.xml',
+              //   projectProperties: [
+              //     tags: [],
+              //     swidTagId: '',
+              //     group: '',
+              //     description: ''
+              //   ],
+              //   synchronous: true
+              // )
               archiveArtifacts(
                 artifacts: 'target/bom.xml',
                 allowEmptyArchive: true,
