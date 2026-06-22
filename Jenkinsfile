@@ -51,7 +51,12 @@ pipeline {
                 projectName: 'sample-spring-app',
                 projectVersion: '0.0.1',
                 artifact: 'target/bom.xml',
-                autoCreateProjects: true,
+                projectProperties: [
+                  tags: [],
+                  swidTagId: '',
+                  group: '',
+                  description: ''
+                ],
                 synchronous: true
               )
               archiveArtifacts(
