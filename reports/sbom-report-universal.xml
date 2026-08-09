@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bom xmlns="http://cyclonedx.org/schema/bom/1.4" serialNumber="urn:uuid:d4d26d04-8327-49ca-9f73-112f1ab080e5" version="1">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" serialNumber="urn:uuid:49f1b09d-9f69-44b0-8c0c-24be5486f198" version="1">
   <metadata>
-    <timestamp>2026-08-09T18:50:11.925Z</timestamp>
+    <timestamp>2026-08-09T19:26:37.003Z</timestamp>
     <tools>
       <tool>
         <vendor>cyclonedx</vendor>
@@ -61,6 +61,15 @@
       <description/>
       <licenses/>
       <purl>pkg:oci/kaniko-project/executor@v1.6.0-debug?repository_url=gcr.io</purl>
+    </component>
+    <component type="container" bom-ref="pkg:oci/shiftleft/sast-scan@v2.1.2?">
+      <publisher/>
+      <group/>
+      <name>shiftleft/sast-scan</name>
+      <version>v2.1.2</version>
+      <description/>
+      <licenses/>
+      <purl>pkg:oci/shiftleft/sast-scan@v2.1.2?</purl>
     </component>
     <component type="container" bom-ref="pkg:oci/sample-app@latest?">
       <publisher/>
@@ -1125,6 +1134,11 @@
     <service bom-ref="urn:service:kaniko:latest">
       <group/>
       <name>kaniko</name>
+      <version>0</version>
+    </service>
+    <service bom-ref="urn:service:slscan:latest">
+      <group/>
+      <name>slscan</name>
       <version>0</version>
     </service>
     <service bom-ref="urn:service:app:latest">

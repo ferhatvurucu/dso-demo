@@ -78,7 +78,7 @@
           ],
           "executionSuccessful": true,
           "commandLine": "-s --framework dockerfile --quiet --skip-download -o json -d /app",
-          "endTimeUtc": "2026-08-09T18:49:41Z",
+          "endTimeUtc": "2026-08-09T19:26:07Z",
           "workingDirectory": {
             "uri": "file:///Users/ferhatvurucu/dso-demo"
           }
@@ -87,7 +87,7 @@
       "invocations": [
         {
           "executionSuccessful": true,
-          "endTimeUtc": "2026-08-09T18:49:41Z",
+          "endTimeUtc": "2026-08-09T19:26:07Z",
           "workingDirectory": {
             "uri": "file:///Users/ferhatvurucu/dso-demo"
           }
@@ -190,13 +190,13 @@
         "description": {
           "text": "Static Analysis Security Test results using @ShiftLeft/sast-scan"
         },
-        "guid": "40e0fd95-334c-4165-a86a-0483ec462006"
+        "guid": "592aa360-8e54-457d-bdec-861a4af8683f"
       },
       "versionControlProvenance": [
         {
           "branch": "main",
           "repositoryUri": "https://github.com/ferhatvurucu/dso-demo",
-          "revisionId": "4fa7ec66aff6eb6b2386a6b4253ce1abe32dc75d"
+          "revisionId": "6d13aae528b8651104215869f2e57aa4d8fe4279"
         }
       ]
     }
@@ -205,8 +205,8 @@
   "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
   "inlineExternalProperties": [
     {
-      "guid": "40e0fd95-334c-4165-a86a-0483ec462006",
-      "runGuid": "61b5166f-d7b5-4004-a5fe-45139ea37790"
+      "guid": "592aa360-8e54-457d-bdec-861a4af8683f",
+      "runGuid": "331f423e-c713-4ec4-8c99-22f4dcc90b77"
     }
   ]
 }

@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:d4d26d04-8327-49ca-9f73-112f1ab080e5",
+  "serialNumber": "urn:uuid:49f1b09d-9f69-44b0-8c0c-24be5486f198",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-08-09T18:50:11.935Z",
+    "timestamp": "2026-08-09T19:26:37.014Z",
     "tools": [
       {
         "vendor": "cyclonedx",
@@ -122,6 +122,27 @@
         {
           "name": "oci:SrcImage",
           "value": "gcr.io/kaniko-project/executor:v1.6.0-debug"
+        }
+      ]
+    },
+    {
+      "publisher": "",
+      "group": "",
+      "name": "shiftleft/sast-scan",
+      "version": "v2.1.2",
+      "description": "",
+      "licenses": [],
+      "purl": "pkg:oci/shiftleft/sast-scan@v2.1.2?",
+      "type": "library",
+      "bom-ref": "pkg:oci/shiftleft/sast-scan@v2.1.2?",
+      "properties": [
+        {
+          "name": "SrcFile",
+          "value": "/app/build-agent.yaml"
+        },
+        {
+          "name": "oci:SrcImage",
+          "value": "shiftleft/sast-scan:v2.1.2"
         }
       ]
     },
@@ -2494,6 +2515,22 @@
         {
           "name": "ServiceName",
           "value": "kaniko"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:service:slscan:latest",
+      "name": "slscan",
+      "version": "latest",
+      "group": "",
+      "properties": [
+        {
+          "name": "SrcFile",
+          "value": "/app/build-agent.yaml"
+        },
+        {
+          "name": "ServiceName",
+          "value": "slscan"
         }
       ]
     },
