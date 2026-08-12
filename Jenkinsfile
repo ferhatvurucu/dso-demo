@@ -101,6 +101,25 @@ pipeline {
         }
       }
     }
+
+    stage('Image Analysis') {
+      parallel {
+        stage('Image Linting') {
+          steps {
+            container('docker-tools') {
+              sh "dockle --exit-code 1 --exit-level fatal ferhatvurucu/dso-demo"
+            }
+          }
+        }
+        stage('Image Scan') {
+          steps {
+            container('docker-tools') {
+              sh "trivy image --timeout 10m --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed ferhatvurucu/dso-demo"
+            }
+          }
+        }
+      }
+    }
     
 
     stage('Deploy to Dev') {
