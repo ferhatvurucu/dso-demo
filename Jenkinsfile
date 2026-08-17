@@ -148,6 +148,7 @@ pipeline {
           stage('DAST') {
               steps {
                   container('docker-tools') {
+                      sh 'docker image prune -af || true'
                       sh 'docker run -t zaproxy/zap-stable zap-baseline.py -t $DEV_URL || exit 0'
                   }
               }
