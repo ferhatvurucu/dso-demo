@@ -10,15 +10,6 @@ spec:
       command:
         - cat
       tty: true
-      resources:
-        requests:
-          cpu: "250m"
-          memory: "512Mi"
-          ephemeral-storage: "1Gi"
-        limits:
-          cpu: "1"
-          memory: "1Gi"
-          ephemeral-storage: "2Gi"
       volumeMounts:
         - name: m2
           mountPath: /root/.m2/
@@ -79,15 +70,6 @@ spec:
         - sleep
       args:
         - 99d
-      resources:
-        requests:
-          cpu: "250m"
-          memory: "512Mi"
-          ephemeral-storage: "1Gi"
-        limits:
-          cpu: "1"
-          memory: "1Gi"
-          ephemeral-storage: "2Gi"
       volumeMounts:
         - name: jenkins-docker-cfg
           mountPath: /kaniko/.docker
@@ -97,15 +79,6 @@ spec:
       command:
         - cat
       tty: true
-      resources:
-        requests:
-          cpu: "250m"
-          memory: "512Mi"
-          ephemeral-storage: "1Gi"
-        limits:
-          cpu: "1"
-          memory: "1Gi"
-          ephemeral-storage: "2Gi"
   volumes:
     - name: m2
       hostPath:
