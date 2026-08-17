@@ -3,7 +3,7 @@ pipeline {
     kubernetes {
       yamlFile 'build-agent.yaml'
       defaultContainer 'maven'
-      idleMinutes 1
+      idleMinutes 10
     }
   }
   environment {
