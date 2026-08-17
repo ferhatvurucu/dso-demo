@@ -9,7 +9,7 @@ pipeline {
   environment {
       // Other environment variables
       ARGO_SERVER = '34.118.90.136:32100'
-      DEV_URL='http://34.118.90.136/:30080/'
+      DEV_URL='http://34.118.90.136:30080/'
   }
   stages {
     stage('Build') {
@@ -148,7 +148,7 @@ pipeline {
           stage('DAST') {
               steps {
                   container('docker-tools') {
-                      sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t $DEV_URL || exit 0'
+                      sh 'docker run -t zaproxy/zap-stable zap-baseline.py -t $DEV_URL || exit 0'
                   }
               }
           }
